@@ -17,7 +17,7 @@ class VendingMachine
 
 
 
-
+  # HAS TO HANDLE CSV input! This isn't effective alone
   def insert_a_coin(value)
     coins[value] ?  add_coin : return (puts "Not a valid coin")
     puts inserted_value
