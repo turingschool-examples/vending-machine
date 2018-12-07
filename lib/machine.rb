@@ -1,4 +1,6 @@
 require 'json'
+require 'pry'
+require './lib/snack'
 
 class Machine
   attr_reader :contents
@@ -9,6 +11,8 @@ class Machine
 
   def intro(response = gets.chomp)
     if response == 'c'
+      snacks = Snack.new(@contents)
+      snacks.list
     elsif response =='i'
     elsif response == 'v'
     elsif response == 'p'
