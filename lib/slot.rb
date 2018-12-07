@@ -18,4 +18,5 @@ class Slot
       Snack.new(obj)
     end
   end
+
 end
