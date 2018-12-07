@@ -3,7 +3,7 @@ requuire_relative 'vm_interface'
 
 
 class VendingMachine
-
+  attr_reader :interface
 
   def initialize
     @interface = VMInterface.new
