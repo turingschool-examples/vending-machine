@@ -42,7 +42,6 @@ class VendingMachine
     slot = check_slot(inputed_slot)
     if slot
       check_availability(inputed_slot)
-      binding.pry
     end
   end
 
