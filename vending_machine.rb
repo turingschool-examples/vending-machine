@@ -58,6 +58,7 @@ class VendingMachine
       else
         puts "Insufficient funds. Please (i)nsert more money."
         start_machine_options(user_input_downcase)
+      end
     end
   end
 
