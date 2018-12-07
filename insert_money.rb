@@ -1,11 +1,12 @@
 class InsertMoney
+  attr_reader :coins
 
   def initialize
-    @coins = []
+    @coins = 0
   end
 
   def display_total
-    total_cents = @coins.sum
+    total_cents = @coins
     dollars = total_cents.to_f/100
     puts "Total inserted: $#{dollars}"
   end
@@ -15,7 +16,7 @@ class InsertMoney
   def check_if_valid(amount_inserted)
     valid_coins = [1,5,10,25]
     if valid_coins.include?(amount_inserted)
-      @coins << amount_inserted
+      @coins += amount_inserted
       return true
     else
       return false

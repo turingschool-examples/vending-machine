@@ -1,11 +1,17 @@
 require 'pry'
 require './insert_money'
+require 'json'
 
 class VendingMachine
 
   def initialize
     @inserted_money = InsertMoney.new
-    @coins = []
+    @contents = get_json
+  end
+
+  def get_json
+    file = File.read('./tiny_vending_machine.json')
+    JSON.parse(file)
   end
 
   def intro
@@ -33,9 +39,31 @@ class VendingMachine
   def purchase
     puts "Please enter the slot of the item you'd like to vend"
     inputed_slot = user_input_downcase
+    slot = check_slot(inputed_slot)
+    if slot
+      check_availability(inputed_slot)
+      binding.pry
+    end
+  end
 
-    check_slot(inputed_slot)
+  def check_availability(inputed_slot)
+    contents = @contents["contents"].first[inputed_slot]["contents"]
+    price = @contents["contents"].first[inputed_slot]["cost"]
+    if contents == []
+      puts "Sorry. There are no items remaining."
+      start_machine_options(user_input_downcase)
+    else
+      if @inserted_money.coins >= price
+        purchase_item(inputed_slot,price)
+      else
+        puts "Insufficient funds. Please (i)nsert more money."
+        start_machine_options(user_input_downcase)
+    end
+  end
 
+  def purchase_item(slot, price)
+    @inserted_money.coins -= price
+    @contents["contents"].first[inputed_slot]["contents"].drop(1)
   end
 
   def check_slot(input)
@@ -44,6 +72,7 @@ class VendingMachine
       return true
     else
       puts "Not a valide slot"
+      start_machine_options(user_input_downcase)
     end
   end
 
