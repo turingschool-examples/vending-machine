@@ -32,13 +32,18 @@ class Position
   end
 
   def sold_item
-    # This should be mutating the contents
-    vend_first.type.capitalize
+    order_item.type.capitalize
   end
 
+  def order_item
+    vend_first
+  end
+
+  # Is there a way to allow this to only be called once in an interaction?
   def vend_first
     @contents.shift
   end
+
 
 
 end

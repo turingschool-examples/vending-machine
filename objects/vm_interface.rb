@@ -3,8 +3,6 @@
 class VMInterface
 
 
-
-
   def start
     puts greetings
     # accept input

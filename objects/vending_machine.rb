@@ -63,7 +63,7 @@ class VendingMachine
   end
 
   def stock_positions
-
+    
   end
 
 
