@@ -15,6 +15,7 @@ class Machine
       snacks.list
     elsif response =='i'
     elsif response == 'v'
+      puts 'Accepts coins of 1,5,10,25 Cents' 
     elsif response == 'p'
     else
       puts 'please enter a valid response'
@@ -27,7 +28,7 @@ machine = Machine.new
 puts 'Hello, please enter a command:'
 puts '(c)ontents - Prints the contents of the vending machine.'
 puts '(i)nsert money - Takes in coins and prints total money inserted.'
-puts '(v)alid coin values - Prints the valid coins inputs:  Accepts coins of 1,5,10,25 Cents i.e. penny, nickel, dime, and quarter.'
+puts '(v)alid coin values'
 puts "(p)urchase - Displays a prompt to enter the slot they'd like to purchase."
 
 machine.intro
