@@ -6,7 +6,7 @@ class Position
   end
 
 
-  # Loads from back, is that an assumption I can make?
+  # Loads from back, is that an assumption I can make/demand?
   def add_contents(item)
     @contents << item
   end
