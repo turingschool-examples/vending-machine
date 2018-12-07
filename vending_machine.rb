@@ -1,4 +1,5 @@
 require 'pry'
+require './insert_money'
 
 class VendingMachine
 
@@ -20,19 +21,37 @@ class VendingMachine
   def start_machine_options(initial_choice)
     if initial_choice == "c" || initial_choice == "contents"
     elsif initial_choice == "i" || initial_choice == "insert money"
-      @inserted_money.start
+      insert_money
     elsif initial_choice == "v" || initial_choice == "valid coin values"
     elsif initial_choice == "p" || initial_choice == "purchase"
+      purchase
     else
       if_choice_is_not_an_option
     end
   end
 
+  def purchase
+    puts "Please enter the slot of the item you'd like to vend"
+    inputed_slot = user_input_downcase
+
+    check_slot(inputed_slot)
+
+  end
+
+  def check_slot(input)
+    valid_slots = ["a1","a2","a3","b1","b2","b3","c1","c2","c3"]
+    if valid_slots.include?(input)
+      return true
+    else
+      puts "Not a valide slot"
+    end
+  end
+
   def insert_money
     inserted_amount = prompt_for_money.to_i
-    valid = check_if_valid(inserted_amount)
+    valid = @inserted_money.check_if_valid(inserted_amount)
     if valid
-      display_total
+      @inserted_money.display_total
       start_machine_options(user_input_downcase)
     else
       puts "Not a valid coin."
@@ -40,26 +59,12 @@ class VendingMachine
     end
   end
 
-  def display_total
-    total_cents = @coins.sum
-    dollars = total_cents.to_f/100
-    puts "Total inserted: $#{dollars}"
-  end
-
   def prompt_for_money
     print "Please insert your money >"
     gets.chomp
   end
 
-  def check_if_valid(amount_inserted)
-    valid_coins = [1,5,10,25]
-    if valid_coins.include?(amount_inserted)
-      @coins << amount_inserted
-      return true
-    else
-      return false
-    end
-  end
+
 
   def if_choice_is_not_an_option
     puts "Please choose either (c)ontents, (i)nsert money, (v)alid coin values, or (p)urchase to move forward."
