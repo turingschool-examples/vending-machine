@@ -14,7 +14,7 @@ class Machine
   def intro(response = gets.chomp)
     if response == 'c'
       snacks = Snack.new(@contents)
-      snacks.list
+      snacks.list_contents
       message
       intro
     elsif response =='i'

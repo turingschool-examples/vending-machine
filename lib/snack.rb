@@ -5,10 +5,13 @@ class Snack
     @contents = data['contents']
   end
 
-  def list
+  def list_contents
     snacks = @contents.first
-    snacks.map do |snack|
-      snack[1]['contents'][0]['type']
+    snack_list = []
+    snacks.map do |location, snack|
+      snack_list << snack['contents']
     end
+    snack_list
+
   end
 end
